@@ -36,6 +36,8 @@ class Viewer(object):
         self.inverseModelView = numpy.identity(4)
         # 模型视图矩阵的逆矩阵
         self.modelView = numpy.identity(4)
+        # 开启提出操作效果
+        glEnable(GL_CULL_FACE)
 
 
 
