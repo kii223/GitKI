@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import numpy
+from scene import Scene
 from numpy.linalg import norm, inv
 from OpenGL.GL import glCallList, glClear, glClearColor, glColorMaterial, glCullFace, glDepthFunc, glDisable,\
                       glFlush, glGetFloatv, glLightfv, glLoadIdentity, glMatrixMode, glMultMatrixf, glPopMatrix, \
@@ -58,7 +59,15 @@ class Viewer(object):
 
     def init_scene(self):
         # 初始化场景
-        pass
+        self.scene = Scene()
+        # 初始化场景类对象
+        self.create_sample_scene()
+
+    def create_sample_seene(self):
+        sphere_node = Sphere()
+        sphere_node.color_index = 2
+        self.scene.add_node(sphere_node)
+
 
     def init_interaction(self):
         # 初始化交互操作
@@ -79,13 +88,14 @@ class Viewer(object):
         glLoadIdentity()
 
         # 渲染场景
-        # self.scene.render()
+        self.scene.render()
 
         # 每次渲染后恢复光照状态
         glDisable(GL_LIGHTING)
         glPopMatrix()
         # 把数据刷新到显存上
         glFlush()
+
 
     def init_view(self):
         """初始化投影矩阵"""
