@@ -78,26 +78,23 @@
 
 
 # peak hell 5关
-import requests  # 网络请求
-import urllib.request as urlopen
-import re
-import time
-import pickle
+# import requests  # 网络请求
+# import urllib.request as urlopen
+# import re
+# import time
+# import pickle
+
+# pick_file = open('banner.p', 'rb')
+# data = pickle.load(pick_file)
+# pick_file.close()
+# print(data)
+# for i in data:
+#     first = ''
+#     for j in i:
+#         first += j[0] * j[1]
+#     print(first)
 
 
 
-# url = 'http://www.pythonchallenge.com/pc/def/banner.p'
-# wb_data = urlopen.urlopen(url)
-# res = str(wb_data.read())
-# print(res)
-# f = open('D:/python/GitKI/123.txt', 'rb')
-# d = pickle.load(f)
-# f.close()
-# print(d)
-
-with open('f.txt', 'r') as f:
-    a = f.read()
-    obj = pickle.loads(a.encode('utf-8'))
-    print(type(obj))
 
 
