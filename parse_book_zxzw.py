@@ -15,7 +15,7 @@ def get_itme_info(url):
     return title + '\n' + textAll + '-----------------------------------\n'
 
 
-url = 'http://book.zongheng.com/showchapter/625442.html'
+url = 'http://book.zongheng.com/showchapter/547156.html'
 
 wb_data = requests.get(url)
 soup = BeautifulSoup(wb_data.text, "lxml")
@@ -33,7 +33,7 @@ for href in href_list:
     txtOut = txtOut + get_itme_info(link)
     print("Done:%s" % href)
     time.sleep(0.5)
-    if txtCount % 10 == 0:
+    if txtCount % 10 == 0 and txtCount != 0:
         with open(filePath, 'w', encoding='gbk', errors='ignore') as f:
             f.write(txtOut)
             print('前%s章生成结束' % txtCount)
