@@ -16,7 +16,7 @@ def get_itme_info(url):
     return title + '\n' + text_newline + '--------------------------------------\n'
 
 
-url = "http://www.biqukan.com/1_1094/"
+url = "http://www.biqukan.com/11_11098/"
 
 wb_data = requests.get(url)
 soup = BeautifulSoup(wb_data.text, "lxml")
@@ -27,16 +27,19 @@ txtName = txtNames[0].text
 print(txtName)
 
 txtOut = ''
+txtCount = 0
+filePath = 'D:/python/study/%s.txt' % txtName
 for href in href_list:
     link = ('http://www.biqukan.com' + href.get("href"))
     txtOut = txtOut + get_itme_info(link)
     print("Done:%s" % href)
     time.sleep(0.3)
+    if txtCount % 10 == 0 and txtCount != 0:
+        with open(filePath, 'w', encoding='gbk', errors='ignore') as f:
+            f.write(txtOut)
+            print('前%s章生成结束' % txtCount)
+    txtCount += 1
 
-filePath = 'D:/python/study/%s.txt' % txtName
-print(filePath)
-with open(filePath, 'w', encoding='gbk', errors='ignore') as f:
-    f.write(txtOut)
-    print('生成结束')
+
 
 
