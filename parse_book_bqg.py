@@ -17,8 +17,11 @@ def get_itme_info(url):
 
 
 url = "http://www.biqukan.com/11_11098/"
-
-wb_data = requests.get(url)
+header ={
+    'Cookie': 'UM_distinctid = 1608262d398aa - 0b006d09a466cd - 454f032b - 1fa400 - 1608262d3992b7',
+    'User-Agent':'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Mobile Safari/537.36'
+}
+wb_data = requests.get(url, headers=header)
 soup = BeautifulSoup(wb_data.text, "lxml")
 href_list = soup.select("div.listmain > dl > dd > a")
 print(href_list)
@@ -32,8 +35,8 @@ filePath = 'D:/python/study/%s.txt' % txtName
 for href in href_list:
     link = ('http://www.biqukan.com' + href.get("href"))
     txtOut = txtOut + get_itme_info(link)
-    print("Done:%s" % href)
-    time.sleep(0.3)
+    print("Done:%s" % href.text)
+    time.sleep(0.5)
     if txtCount % 10 == 0 and txtCount != 0:
         with open(filePath, 'w', encoding='gbk', errors='ignore') as f:
             f.write(txtOut)
